@@ -9,6 +9,6 @@ this command will create ```msgpack.so``` file; this is the compiled decoder its
 
 ### run kcli with decoder
 ```
-kcli -a localhost:9092 -d msgpack.so
+kcli -a localhost:9092 -d ./msgpack.so
 ```
 ```-d``` argument accepts path to compiled decoder
