@@ -15,19 +15,25 @@ type Msgpack struct{}
 
 // Decode is required in order to be a plugin
 func (m Msgpack) Decode(topic string, b []byte) ([]byte, error) {
+
+	// accepts any topic
 	if topic == "" {
 		return b, nil
 	}
 
+	// schema free container
+	// for result
 	var out map[string]interface{}
 
+	// fill container with decoded values
 	err := msgpack.Unmarshal(b, &out)
 	if err != nil {
 		return nil, err
 	}
 
+	// represent result as json
+	// for beautiful output with kcli
 	repr, err := json.Marshal(out)
-
 	if err != nil {
 		return b, nil
 	}
